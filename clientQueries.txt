@@ -1,0 +1,80 @@
+vscode://vscode.github-authentication/did-authenticate?windowid=3&code=07eafee7d5ae628aec7b&state=70da0306-7391-45d5-8c2d-0a44bd04690b
+
+Copy the token.
+Switch back to VS code.
+Click Signing in to github.com... in the status bar.
+Paste the token and hit enter.
+------------------------------
+# Write your query or mutation here
+query getAllUsers{
+users{
+  _id
+  lastName
+  email
+}
+}
+
+----------------------------------------------------------------
+query getAllQuotes{
+  quotes {
+    name
+    by
+  }
+}
+
+------------------------------
+query getUserById {
+  user(_id: "23131") {
+    firstName
+    lastName
+  }
+}
+
+----------------------
+query getQuoteByUser($userId: ID!) {
+  iqo(by: $userId) {
+    name
+  }
+}
+
+------------------------
+mutation createUser($userNew: UserInput!) {
+  signupUser(userNew: $userNew) {
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+{
+  "userNew": {
+    "firstName": "sneh",
+    "lastName": "Patel",
+    "email": "sp@gmail.com",
+    "password": "hello"
+  }
+}
+
+---------------------------
+mutation signinUser($userSignin: UserSigninInput!) {
+  user: signinUser(userSignin: $userSignin) {
+    token
+  }
+}
+
+{
+  "userSignin": {
+    "email": "sp@gmail.com",
+    "password": "hello"
+  }
+}
+
+-------------------------------
+mutation createQuote {
+  quote:createQuote(name: "Quote second")
+}
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWY5NzRjNDAxYzhjMzQxMjc2NzNhZjAiLCJpYXQiOjE2NDM3Mzg1MTh9.FH0dF1Xexbk1oXZFnsoX9P81D9qxbJjohIns8OVOKPA"
+}
